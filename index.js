@@ -221,16 +221,9 @@ var phpcsPlugin = function(options) {
             }
 
             var report = {
-                error: false,
-                output: ''
+                error: exitCode > 0,
+                output: output
             };
-
-            if ((exitCode === 1) || (exitCode === 2)) {
-                // A codding style problem is found. Attache report to the file to allow
-                // reporters do their job.
-                report.error = true;
-                report.output = output;
-            }
 
             file.phpcsReport = report;
             stream.push(file);
