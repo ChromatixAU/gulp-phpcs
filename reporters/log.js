@@ -14,7 +14,7 @@ module.exports = function() {
     return through.obj(function(file, enc, callback) {
         var report = file.phpcsReport || {};
 
-        if (report.error) {
+        if (report.error || report.output) {
             var message = 'PHP Code Sniffer found a ' + chalk.yellow('problem') +
                 ' in ' + chalk.magenta(file.path) + '\n' +
                 report.output.replace(/\n/g, '\n    ');
